@@ -549,7 +549,8 @@ function getFormat(infoVar){
   }
   else if(tipo == "character"){
     format = infoVar["format"].split("(");
-    format = format[1].split(")");
+    if (format[1] != undefined)
+      format = format[1].split(")");
     format = format[0];
   }
   return format;
@@ -877,6 +878,7 @@ function createEditPanel(idVar){
 function prepararEditarVariable(idVar){
   let idFrame = $("#frames option:selected").attr('value');
   let infoVar = nuevaPlantilla.getFrame(idFrame).getVariable(idVar);
+  $('.errorVar').empty();
   //RELLENAR LOS DATOS EN EL PANEL DE EDICIÓN
   $('#tipoVar option:selected').removeAttr("selected");
   $('#tipoVar option[value="'+infoVar["type"]+'"]').prop("selected",true);
@@ -1047,11 +1049,11 @@ function editarVariable(idVar){
       else{
         createEditPanel(varInfo.id);
       }
+      cerrarModal("#modalNewVar");
     }
     else {
       $('.errorVar').append(message);
     }
-    cerrarModal("#modalNewVar");
   })
 }
 function modificarFrame(idFrame){

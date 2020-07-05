@@ -147,7 +147,7 @@ exports.validateNewVar = function validateNewVar(varInfo, idFrame, callback){
     }else if(validaciones["ini"]=="decimal"){
         callback("Valor decimal debe ser un número");
     }else if(validaciones["ini"]=="character"){
-        callback("El formato debe ser un número entero");
+        callback("Formato incorrecto");
     }else if(validaciones["ini"]=="logical"){
         callback("El valor inicial debe ser true o false para variables logical");
     }else{

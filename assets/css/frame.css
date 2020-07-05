@@ -406,3 +406,6 @@ legend {
   border-top: 10px solid #58abb7;
   width: 60%;
 }
+#errorMSG{
+  color: red;
+}

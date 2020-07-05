@@ -50,6 +50,7 @@ function createFrameAndVars(tablas,frames,vars){
   console.log("tablas ",tablas,"frames ",frames,"vars ",vars);
   let flog=("Comenzamos a leer el archivo \n");
   let idFrame;
+  let isError = false;
   let outp=true;
   let inp=true;
   if(tablas.size==0 || tablas==null ||tablas==undefined )
@@ -123,11 +124,13 @@ if(frames.size!=0 && frames!=null && frames!=undefined){
                     varInfo["id"]=idVar;
                     flog+=">>OK:Se agrega correctamente la variable: "+varInfo["name"]+" con id: "+varInfo['id']+" con label: "+varInfo['label']+" de tipo: "+varInfo['type']+" con formato: "+varInfo['format']+" con valor inicial: "+varInfo['initial']+"\n";
                   }else{
-                    flog+=(">>NOK:Error al crear la variable"+varInfo["name"]+" en el Frame: "+idFrame+" con error: "+message+"\n")
+                    flog+=(">>****ERROR:Error al crear la variable"+varInfo["name"]+" en el Frame: "+idFrame+" con error: "+message+"\n");
+                    isError = true;
                   }
               });
             }else{
-              flog+=">>NOK: Error variable no encontrada en la temp-table"
+              flog+=">>****ERROR: Error variable no encontrada en la temp-table";
+              isError = true;
             }                       
             
             
@@ -154,8 +157,13 @@ if(frames.size!=0 && frames!=null && frames!=undefined){
             line.opciones.forEach(opcion =>{
               if(opcion.type == "label")
                 varInfo["label"] = opcion.value;
-              if(opcion.type == "row")
-                varInfo["row"] = opcion.value;
+              if(opcion.type == "row"){
+                if(parseInt(opcion.value) != 1)
+                  varInfo["row"] = parseInt(opcion.value) - 1;
+                else
+                varInfo["row"] = parseInt(opcion.value);
+              }
+                
               if(opcion.type == "colum")
                 varInfo["col"] = opcion.value;
               if(varInfo.col != 0 || varInfo.row !=0)
@@ -182,30 +190,36 @@ if(frames.size!=0 && frames!=null && frames!=undefined){
                   varInfo.movido=obj.movido;
                   flog+=">>OK:Se agrega correctamente la variable: "+varInfo["name"]+" con id: "+varInfo['id']+" con label: "+varInfo['label']+" de tipo: "+varInfo['type']+" con formato: "+varInfo['format']+" con valor inicial: "+varInfo['initial']+" en fila: "+varInfo['row']+" en columna: "+varInfo['col']+"\n";
                 }else{
-                  flog+=(">>NOK:Error al crear la variable "+varInfo["name"]+" en el Frame: "+idFrame+" con error: "+message+"\n");
+                  flog+=(">>****ERROR:Error al crear la variable "+varInfo["name"]+" en el Frame: "+idFrame+" con error: "+message+"\n");
+                  isError = true;
                 }
               });
 
               
             } else{
-              flog+=">>NOK: Error variable no encontrada en la tabla de variables.\n"
+              flog+=">>****ERROR: Error variable no encontrada en la tabla de variables.\n";
+              isError = true;              
             }             
             
           });
         }else{
-          if(outp==false)
-            flog+=">NOK: No se ha definido la temp-table. \n";
-          if(inp==false)
-            flog+=">NOK: No se ha definido la tabla de variables. \n";
+          if(outp==false){
+            flog+=">****ERROR: No se ha definido la temp-table. \n";
+            isError = true;
+          }
+            
+          if(inp==false){
+            flog+=">****ERROR: No se ha definido la tabla de variables. \n";
+            isError = true;
+          }
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
         
       }else{
         //añadir comentario en el log.
-        flog+=(">NOK:Error al crear el frame "+fr+" con error: "+message+"\n")
-        
-        
+        flog+=(">****ERROR:Error al crear el frame "+fr+" con error: "+message+"\n");
+        isError = true;
       }
       flog+="------------------------------------------------------------\n"
     })
@@ -214,7 +228,8 @@ if(frames.size!=0 && frames!=null && frames!=undefined){
     
   }
 }else{
-  flog+=("NOK:Error al leer los frames, no hay frames definidos\n")
+  flog+=("****ERROR:Error al leer los frames, no hay frames definidos\n");
+  isError = true;
 }
   console.log(flog);
   let fs = require('fs');
@@ -224,7 +239,11 @@ if(frames.size!=0 && frames!=null && frames!=undefined){
             displayMsg(err);
             /* alert(err); */
         }
-        displayMsg("Se ha creado el archivo un archivo con los detalles de la carga: <br> "+nombre);
+        if (isError ){
+          displayMsg("Se ha creado el archivo un archivo con los detalles de la carga: <br> "+nombre + '<br> <span id="errorMSG"> Contiene errores </span>');
+        }
+        else
+          displayMsg("Se ha creado el archivo un archivo con los detalles de la carga: <br> "+nombre);
         //alert("Se ha creado el archivo "+nombre+" con los detalles de la carga");
     });
 }
@@ -258,7 +277,14 @@ function preparaDatos(varInfo){
     varInfo["tam"] =  8;
   }
   if(varInfo["type"]=="character"){
-    varInfo["format"]=parseInt(getFormat(varInfo));
+    
+    if(NaN == parseInt(getFormat(varInfo))){
+      varInfo["format"]= getFormat(varInfo);
+    }
+      
+    else 
+    varInfo["format"]=getFormat(varInfo);
+
     varInfo["tam"] = 8;
   }
   if(varInfo["type"]=="date"){
