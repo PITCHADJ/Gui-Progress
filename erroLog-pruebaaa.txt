@@ -1,2 +1,0 @@
-Comenzamos a leer el archivo 
-NOK:Error al leer los frames, no hay frames definidos

@@ -1,5 +1,0 @@
-Comenzamos a leer el archivo 
->OK:Se añade nuevo Frame de entrada con nombre: sadfsadf con titulo:  con id:1
->Empezamos a crear la variable de entrada: asdf con label: asdf
->>OK:Se agrega correctamente la variable: asdf con id: 1 con label: asdf de tipo: logical con formato:  con valor inicial: true en fila: 8 en columna: 36
-------------------------------------------------------------
