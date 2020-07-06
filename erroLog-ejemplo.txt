@@ -3,7 +3,7 @@ Comenzamos a leer el archivo
 >Empezamos a crear la variable de entrada: item con label: Item
 >>OK:Se agrega correctamente la variable: item con id: 1 con label: Item de tipo: character con formato: x(8) con valor inicial:  en fila: 5 en columna: 27
 >Empezamos a crear la variable de entrada: cantidad con label: Cantidad
->>OK:Se agrega correctamente la variable: cantidad con id: 2 con label: Cantidad de tipo: decimal con formato: ->,>>>,>>9.9<<<<<<<<< con valor inicial: 1.0 en fila: 5 en columna: 52
+>>OK:Se agrega correctamente la variable: cantidad con id: 2 con label: Cantidad de tipo: decimal con formato: ->,>>>,>>9.9<<<<<<<<< con valor inicial: 0.0 en fila: 5 en columna: 52
 >Empezamos a crear la variable de entrada: um con label: Unidad de medida
 >>OK:Se agrega correctamente la variable: um con id: 3 con label: Unidad de medida de tipo: character con formato: x(8) con valor inicial: KG en fila: 7 en columna: 44
 >Empezamos a crear la variable de entrada: precio con label: Precio
@@ -12,20 +12,16 @@ Comenzamos a leer el archivo
 >>OK:Se agrega correctamente la variable: cust con id: 5 con label: Identificador Cliente de tipo: character con formato: x(8) con valor inicial:  en fila: 3 en columna: 9
 >Empezamos a crear la variable de entrada: oferta con label: Descuento Verano (10%)
 >>OK:Se agrega correctamente la variable: oferta con id: 6 con label: Descuento Verano (10%) de tipo: logical con formato:  con valor inicial: true en fila: 9 en columna: 11
->Empezamos a crear la variable de entrada: entrega con label: Fecha Entrega
->>OK:Se agrega correctamente la variable: entrega con id: 7 con label: Fecha Entrega de tipo: date con formato: dd/mm/yyyy con valor inicial: 31/07/2020 en fila: 9 en columna: 47
 ------------------------------------------------------------
 >OK:Se añade nuevo Frame de salida con nombre: ItemStock con titulo: Artículos en Stock con id:2
->Empezamos a crear la variable de salida: Id con label: Identificador Item de tipo: character con formato: x(8) con valor inicial: 
->>OK:Se agrega correctamente la variable: Id con id: 1 con label: Identificador Item de tipo: character con formato: x(8) con valor inicial: 
+>Empezamos a crear la variable de salida: Id con label: Identificador Item de tipo: character con formato: x(8) con valor inicial: 0.0
+>>OK:Se agrega correctamente la variable: Id con id: 1 con label: Identificador Item de tipo: character con formato: x(8) con valor inicial: 0.0
 >Empezamos a crear la variable de salida: Cantidad con label: Cantidad de tipo: decimal con formato: ->,>>>,>>9.9<<<<<<<<< con valor inicial: 0.0
 >>OK:Se agrega correctamente la variable: Cantidad con id: 2 con label: Cantidad de tipo: decimal con formato: ->,>>>,>>9.9<<<<<<<<< con valor inicial: 0.0
 >Empezamos a crear la variable de salida: almacen con label: Almacén de tipo: character con formato: x(8) con valor inicial: 0.0
 >>OK:Se agrega correctamente la variable: almacen con id: 3 con label: Almacén de tipo: character con formato: x(8) con valor inicial: 0.0
 >Empezamos a crear la variable de salida: site con label: Estantería de tipo: character con formato: x(8) con valor inicial: 0.0
 >>OK:Se agrega correctamente la variable: site con id: 4 con label: Estantería de tipo: character con formato: x(8) con valor inicial: 0.0
->Empezamos a crear la variable de salida: caducidad con label: Fecha Caducidad de tipo: date con formato: mm/dd/yyyy con valor inicial: 07/30/2020
->>OK:Se agrega correctamente la variable: caducidad con id: 5 con label: Fecha Caducidad de tipo: date con formato: mm/dd/yyyy con valor inicial: 07/30/2020
 >Empezamos a crear la variable de salida: reservado con label: Reservado de tipo: logical con formato: mm/dd/yyyy con valor inicial: false
->>OK:Se agrega correctamente la variable: reservado con id: 6 con label: Reservado de tipo: logical con formato: mm/dd/yyyy con valor inicial: false
+>>OK:Se agrega correctamente la variable: reservado con id: 5 con label: Reservado de tipo: logical con formato: mm/dd/yyyy con valor inicial: false
 ------------------------------------------------------------

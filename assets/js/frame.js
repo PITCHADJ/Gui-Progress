@@ -226,7 +226,7 @@ interact('.dropzone').dropzone({
         // y=objeto.offsetTop+posy
         //                          -> datay=posy+objeto.offsetTop+clone.offsetTop
         // y=datay-clone.offsetTop
-        var y1=posy+objeto.offsetTop+objcln.offsetTop;
+        var y1=posy+objeto.offsetTop-objcln.offsetTop;
         
         // translate the element
         objcln.style.webkitTransform =
